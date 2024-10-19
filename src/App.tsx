@@ -1,7 +1,12 @@
+import MainLayout from "./components/layout/mainLayout";
+import PrivateRoute from "./routes/privateRoute";
+
 function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
     </>
   );
 }
