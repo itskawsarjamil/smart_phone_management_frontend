@@ -1,6 +1,13 @@
 import { ReactNode } from "react";
 
-const PrivateRoute = ({ children }: { children: ReactNode }) => {
+const PrivateRoute = ({
+  children,
+  role,
+}: {
+  children: ReactNode;
+  role: "admin" | "user" | undefined | ("admin" | "user" | undefined)[];
+}) => {
+  console.log(role);
   return children;
 };
 

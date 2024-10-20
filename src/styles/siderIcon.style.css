@@ -1,7 +1,8 @@
 .zoom {
-  transition: transform 0.7s;
+  transform: scale(1.2);
+  /* transition: transform 0.7s; */
 }
 
-.zoom:hover {
-  transform: scale(1.4);
-}
+/* .zoom:hover {
+  transform: scale(1.5);
+} */

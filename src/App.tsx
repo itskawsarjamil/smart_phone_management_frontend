@@ -4,9 +4,9 @@ import PrivateRoute from "./routes/privateRoute";
 function App() {
   return (
     <>
-      <PrivateRoute>
-        <MainLayout />
-      </PrivateRoute>
+      {/* <PrivateRoute> */}
+      <MainLayout />
+      {/* </PrivateRoute> */}
     </>
   );
 }

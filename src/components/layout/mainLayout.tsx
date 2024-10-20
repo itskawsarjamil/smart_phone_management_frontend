@@ -1,6 +1,7 @@
 import { Button, Layout, theme } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Sider from "./sider";
+import { useState } from "react";
 
 const MainLayout = () => {
   const { Header, Content, Footer } = Layout;
@@ -8,9 +9,9 @@ const MainLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  const handleLogOut = () => {};
-
+  const [user, setUser] = useState(false);
+  const handleLogOut = () => setUser((prev) => !prev);
+  const location = useLocation();
   return (
     <Layout>
       <Sider />
@@ -23,7 +24,18 @@ const MainLayout = () => {
             textAlign: "end",
           }}
         >
-          <Button onClick={handleLogOut}>Log Out</Button>
+          {user ? (
+            <>
+              <Link to={"/login"}>
+                <Button onClick={handleLogOut}>Login</Button>
+              </Link>
+              <Link to={"/register"}>
+                <Button onClick={handleLogOut}>register</Button>
+              </Link>
+            </>
+          ) : (
+            <Button onClick={handleLogOut}>Log Out</Button>
+          )}
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
