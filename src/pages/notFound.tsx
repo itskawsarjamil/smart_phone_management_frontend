@@ -4,9 +4,6 @@ import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const NotFound = () => {
   useDocumentTitle("Not found");
-  const x = (a: number) => a * a;
-
-  x(5);
 
   const location = useLocation();
   return (

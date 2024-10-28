@@ -8,10 +8,16 @@ import { sharedPath } from "../../routes/sharedpath.routes";
 import { userPath } from "../../routes/userpath.routes";
 import "../../styles/siderIcon.style.css";
 import { sideBarItemGenerator } from "../../utils/sidebarItemGenerator";
-const Sider = () => {
+const Sider = ({
+  role,
+  setRole,
+}: {
+  role: string;
+  setRole: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const screens = useBreakPoint();
   const { Sider } = Layout;
-  const role: string = "user";
+
   let items: MenuProps["items"] = [];
   switch (role) {
     case ROLE.admin:

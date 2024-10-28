@@ -2,13 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
+export type TUser = {
+  userId: string;
+  role: string;
+  iat: number;
+  exp: number;
+};
 export type TInitialState = {
-  userId: string | null;
+  user: TUser | null;
   token: string | null;
 };
 
 const initialState: TInitialState = {
-  userId: null,
+  user: null,
   token: null,
 };
 
@@ -16,21 +22,22 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<TInitialState>) => {
-      state.userId = action.payload.userId;
+    setUser: (state, action: PayloadAction<TInitialState>) => {
+      state.user = action.payload.user;
       state.token = action.payload.token;
     },
+
     logOut: (state) => {
-      state.userId = null;
+      state.user = null;
       state.token = null;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logOut } = authSlice.actions;
+export const { setUser, logOut } = authSlice.actions;
 
-export const userId = (state: RootState) => state.auth.userId;
-export const token = (state: RootState) => state.auth.token;
+export const getCurrentUser = (state: RootState) => state.auth.user;
+export const getCurrenttoken = (state: RootState) => state.auth.token;
 
 export default authSlice.reducer;

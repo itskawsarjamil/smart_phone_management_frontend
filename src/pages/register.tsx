@@ -1,3 +1,51 @@
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+
+const Register = () => {
+  const methods = useForm();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+  };
+  return <div className="text-3xl font-bold">This is Register Component</div>;
+};
+
+export default Register;
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 // const Register = () => {
 //   const {
 //     handleSubmit,
@@ -179,9 +227,3 @@
 // };
 
 // export default Register;
-
-const Register = () => {
-  return <div className="text-3xl font-bold">This is Register Component</div>;
-};
-
-export default Register;

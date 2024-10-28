@@ -1,22 +1,24 @@
+import AllSmartPhone from "../pages/shared/allSmartPhones";
 import ChangePassword from "../pages/shared/auth/changePassword";
 import ForgetPassword from "../pages/shared/auth/forgetPassword";
 import MyDetails from "../pages/shared/auth/myDetails";
 import ResetPassword from "../pages/shared/auth/resetPassword";
 import SellsDetails from "../pages/shared/sellsHistory/sellsDetails";
+import SmartPhoneDetails from "../pages/shared/smartPhone/smartPhoneDetails";
 import UpdateUser from "../pages/shared/updateUser";
-import AllSmartPhone from "../pages/smartPhone/allSmartPhones";
-import CreateSmartPhone from "../pages/smartPhone/createSmartPhone";
-import SmartPhoneDetails from "../pages/smartPhone/smartPhoneDetails";
 
 export const sharedPath = [
   {
-    name: "update-user",
-    path: "update-user",
+    path: "update-user/:userId",
     element: <UpdateUser />,
   },
   {
+    name: "all-smartPhones",
+    path: "all-smartPhones",
+    element: <AllSmartPhone />,
+  },
+  {
     name: "auth",
-
     children: [
       {
         name: "my-details",
@@ -42,7 +44,6 @@ export const sharedPath = [
   },
   {
     name: "sell history",
-    // path:""
     children: [
       {
         name: "sells-details",
@@ -60,18 +61,11 @@ export const sharedPath = [
         element: <AllSmartPhone />,
       },
       {
-        name: "create-smartphone",
-        path: "create-smartphone",
-        element: <CreateSmartPhone />,
-      },
-      {
-        name: "smartphone-details",
-        path: "smartphone-details",
+        path: "smartphone-details/:phoneId",
         element: <SmartPhoneDetails />,
       },
       {
-        name: "update-smartphone",
-        path: "update-smartphone",
+        path: "update-smartphone/:phoneId",
         element: <AllSmartPhone />,
       },
     ],

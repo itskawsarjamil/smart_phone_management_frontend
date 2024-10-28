@@ -5,13 +5,18 @@ import NotFound from "../pages/notFound";
 import Register from "../pages/register";
 import { mainRoutesGenerator } from "../utils/mainRoutesGenerator";
 import adminPath from "./adminpath.routes";
-import PrivateRoute from "./privateRoute";
+import ProtectedRoute from "./protectedRoute";
 import { sharedPath } from "./sharedpath.routes";
 import { userPath } from "./userpath.routes";
+import ChangePassword from "../pages/changePassword";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ProtectedRoute role={["admin", "user"]}>
+        <App />
+      </ProtectedRoute>
+    ),
     errorElement: <NotFound />,
     children: [
       {
@@ -20,22 +25,21 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: "/admin",
     element: (
-      <PrivateRoute role="admin">
+      <ProtectedRoute role="admin">
         <App />
-      </PrivateRoute>
+      </ProtectedRoute>
     ),
     children: mainRoutesGenerator(adminPath, sharedPath),
   },
   {
     path: "/user",
     element: (
-      <PrivateRoute role="user">
+      <ProtectedRoute role="user">
         <App />
-      </PrivateRoute>
+      </ProtectedRoute>
     ),
     children: mainRoutesGenerator(userPath, sharedPath),
   },
@@ -46,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePassword />,
   },
 ]);
 
