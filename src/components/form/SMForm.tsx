@@ -1,23 +1,27 @@
 import { Form } from "antd";
-import { ReactNode } from "react";
 import {
   FieldValues,
   FormProvider,
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { TFormConfig, TSMForm } from "../../types";
 
-const SMForm = ({
+const SMForm = <T extends FieldValues>({
   onSubmit,
-  defaultValues,
   children,
-}: {
-  onSubmit: SubmitHandler<FieldValues>;
-  children: ReactNode;
-  defaultValues?: Record<string, unknown>;
-}) => {
-  const methods = useForm({ defaultValues });
-  const submit: SubmitHandler<FieldValues> = (e) => {
+  defaultValues,
+  resolver,
+}: TSMForm<T> & TFormConfig<T>) => {
+  const formConfig: TFormConfig<T> = {};
+  if (defaultValues) {
+    formConfig["defaultValues"] = defaultValues;
+  }
+  if (resolver) {
+    formConfig["resolver"] = resolver;
+  }
+  const methods = useForm<T>(formConfig);
+  const submit: SubmitHandler<T> = (e) => {
     onSubmit(e);
     methods.reset();
   };

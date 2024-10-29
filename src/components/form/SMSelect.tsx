@@ -1,32 +1,31 @@
-import { Form, Input } from "antd";
+// src/components/form/SMSelect.tsx
+import { Form, Select } from "antd";
 import { Controller } from "react-hook-form";
-import { TSMInput } from "../../types";
+import { TSelect as TSMSelect } from "../../types";
 
-const SMInput = ({
+const SMSelect = ({
   name,
   label,
-  type,
-  disabled,
-  defaultValue,
+  options,
   required = true,
-}: TSMInput) => {
+  disabled,
+}: TSMSelect) => {
   return (
     <Controller
       name={name}
       rules={{ required }}
-      defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => (
         <Form.Item required={required} label={label}>
-          <Input
-            size="large"
-            disabled={disabled}
+          <Select
             {...field}
+            disabled={disabled}
+            options={options}
+            size="large"
             id={name}
-            type={type}
           />
           {error && (
             <span className="text-red-500">
-              {error.message || "please give valid input"}
+              {error.message || "Please select a valid option"}
             </span>
           )}
         </Form.Item>
@@ -35,4 +34,4 @@ const SMInput = ({
   );
 };
 
-export default SMInput;
+export default SMSelect;

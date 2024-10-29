@@ -1,4 +1,1 @@
-export const ROLE = {
-  admin: "admin",
-  user: "user",
-} as const;
+export * from "./global";
