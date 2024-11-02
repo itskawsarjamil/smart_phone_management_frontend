@@ -9,6 +9,7 @@ const SMSelect = ({
   options,
   required = true,
   disabled,
+  mode,
 }: TSMSelect) => {
   return (
     <Controller
@@ -22,6 +23,7 @@ const SMSelect = ({
             options={options}
             size="large"
             id={name}
+            mode={mode}
           />
           {error && (
             <span className="text-red-500">

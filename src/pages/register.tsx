@@ -62,20 +62,20 @@ const Register = () => {
     // console.log(Object.fromEntries(formData));
   };
 
-  const defualtDummyUserValue: TUserCreateValues = {
-    name: {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    userName: "john_doe",
-    email: "john.doe@example.com",
-    bio: "Software developer with a passion for building impactful projects.",
-    contactNo: "01234199444",
-    emergencyContactNo: "01234119933",
-    bloodGroup: "O+",
-    presentAddress: "1234 Elm Street, Citytown",
-    permanentAddress: "5678 Oak Street, Villagetown",
-  };
+  // const defualtDummyUserValue: TUserCreateValues = {
+  //   name: {
+  //     firstName: "John",
+  //     lastName: "Doe",
+  //   },
+  //   userName: "john_doe",
+  //   email: "john.doe@example.com",
+  //   bio: "Software developer with a passion for building impactful projects.",
+  //   contactNo: "01234199444",
+  //   emergencyContactNo: "01234119933",
+  //   bloodGroup: "O+",
+  //   presentAddress: "1234 Elm Street, Citytown",
+  //   permanentAddress: "5678 Oak Street, Villagetown",
+  // };
   const resolver: Resolver<TUserCreateValues, any> = zodResolver(
     createUserValidationSchema
   );
@@ -126,11 +126,7 @@ const Register = () => {
   return (
     <Row justify={"center"} style={{ height: "100vh" }} align={"middle"}>
       <Col span={22}>
-        <SMForm<TUserCreateValues>
-          onSubmit={onSubmit}
-          resolver={resolver}
-          defaultValues={defualtDummyUserValue}
-        >
+        <SMForm onSubmit={onSubmit} resolver={resolver}>
           <Row gutter={[24, 36]}>
             {formChild.map((item, index) => (
               <Col

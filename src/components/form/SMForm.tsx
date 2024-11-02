@@ -5,23 +5,23 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { TFormConfig, TSMForm } from "../../types";
+import { TFormConfig, TFormProps, TSMForm } from "../../types";
 
-const SMForm = <T extends FieldValues>({
+const SMForm = ({
   onSubmit,
   children,
   defaultValues,
   resolver,
-}: TSMForm<T> & TFormConfig<T>) => {
-  const formConfig: TFormConfig<T> = {};
+}: TFormProps) => {
+  const formConfig: TFormConfig = {};
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
   }
   if (resolver) {
     formConfig["resolver"] = resolver;
   }
-  const methods = useForm<T>(formConfig);
-  const submit: SubmitHandler<T> = (e) => {
+  const methods = useForm(formConfig);
+  const submit: SubmitHandler<FieldValues> = (e) => {
     onSubmit(e);
     methods.reset();
   };
@@ -33,5 +33,31 @@ const SMForm = <T extends FieldValues>({
     </FormProvider>
   );
 };
+// const SMForm = <T extends FieldValues>({
+//   onSubmit,
+//   children,
+//   defaultValues,
+//   resolver,
+// }: TFormPropsWithGeneric<T>) => {
+//   const formConfig: TFormConfigWithGeneric<T> = {};
+//   if (defaultValues) {
+//     formConfig["defaultValues"] = defaultValues;
+//   }
+//   if (resolver) {
+//     formConfig["resolver"] = resolver;
+//   }
+//   const methods = useForm<T>(formConfig);
+//   const submit: SubmitHandler<T> = (e) => {
+//     onSubmit(e);
+//     methods.reset();
+//   };
+//   return (
+//     <FormProvider {...methods}>
+//       <Form layout="vertical" onFinish={methods.handleSubmit(submit)}>
+//         {children}
+//       </Form>
+//     </FormProvider>
+//   );
+// };
 
 export default SMForm;
